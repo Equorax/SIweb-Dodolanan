@@ -8,51 +8,51 @@ import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
 
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-  const [errors, setErrors] = useState<{email?: string; password?: string;}>({});
+  const [errors, setErrors] = useState<{username?: string; password?: string;}>({});
   const [showPassword,setShowPassword] = useState(false);
  
 // users
   const validateForm = () => {
-    const newErrors: { email?: string; password?: string } = {};
+    const newErrors: { username?: string; password?: string } = {};
 
     // Email validation
-    if(email.trim() === ''){
-      newErrors.email = 'Email tidak boleh kosong';
-    } else if(email !== 'customer@gmail.com' && email !== ''){
-      newErrors.email = 'Email anda salah'
+    if(username.trim() === ''){
+      newErrors.username = 'Username tidak boleh kosong';
+    } else if(username !== 'user123' && username !== ''){
+      newErrors.username = 'Username anda salah'
     }
    
     // Password validation
     if (password.trim() === '') {
       newErrors.password = 'Password tidak boleh kosong';
-    } else if (password.length < 6) {
-      newErrors.password = 'Password harus lebih dari 6 karakter';
-    } else if (password !== 'pascal12345'  && password !== ''){
+    } else if (password.length < 3) {
+      newErrors.password = 'Password harus lebih dari  karakter';
+    } else if (password !== '12345' && password !== ''){
       newErrors.password = 'password anda salah'
     }
 
 
     setErrors(newErrors);
     // jika ada error maka lengthnya gak bakal 0 maka yang di return dari function ini false
-    // errornya dari setiap block if jika ada error maka object newErrors akan diisi dengan newErrors.email/password
+    // errornya dari setiap block if jika ada error maka object newErrors akan diisi dengan newErrors.username/password
     return Object.keys(newErrors).length === 0;
   };
 
   const validateAdminForm = () => {
-    const newErrors :  { email?: string; password?: string } = {};
+    const newErrors :  { username?: string; password?: string } = {};
 
-    if (email.trim() === '') {
-      newErrors.email = 'Email tidak boleh kosong';
-    } else if (email !== 'admin@gmail.com') {
-      newErrors.email = 'Email admin salah';
+    if (username.trim() === '') {
+      newErrors.username = 'Username tidak boleh kosong';
+    } else if (username !== 'admin123') {
+      newErrors.username = 'Username admin salah';
     }
 
     if (password.trim() === '') {
       newErrors.password = 'Password tidak boleh kosong';
-    } else if (password !== 'sayaadmin') {
+    } else if (password !== '12345') {
       newErrors.password = 'Password admin salah';
     }
 
@@ -65,20 +65,20 @@ export default function LoginPage() {
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if(email !== '' && email!== 'admin@gmail.com'){
+    if(username !== '' && username === 'user123'){
       if(validateForm() ){
         router.push('/customers/beranda')
       }
     }
     // jalur login admin
-    if(email === 'admin@gmail.com')
+    if(username === 'admin123')
       if(validateAdminForm()){
         router.push('/admin/dashboard')
     }
      
     
     }
-    console.log('Login attempt with:', { email, password });
+    console.log('Login attempt with:', { username, password });
 
   return (
 
@@ -90,18 +90,18 @@ export default function LoginPage() {
         
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="text" className="block text-sm font-medium text-gray-700">
               Alamat Email
             </label>
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               // required
             />
-              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+              {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
           </div>
 
           
@@ -158,24 +158,8 @@ export default function LoginPage() {
           </button>
         </form>
         
-        {/* <div className="relative my-4">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300"></div>
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white text-gray-500">Atau login dengan</span>
-          </div>
-        </div> */}
         
-        {/* <div className="grid grid-cols-2 gap-4">
-          <button className="flex items-center justify-center border border-gray-300 rounded-md py-2 hover:bg-gray-50">
-            <FcGoogle className="mr-2" /> Google
-          </button>
-          <button className="flex items-center justify-center border border-gray-300 rounded-md py-2 hover:bg-gray-50">
-            <FaApple className="mr-2" /> Apple
-          </button>
-        </div>
-         */}
+       
         <div className="text-center mt-4">
           <span className="text-sm text-gray-600">
             Belum punya akun? {' '}

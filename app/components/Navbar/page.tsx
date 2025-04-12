@@ -23,7 +23,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white shadow-sm py-4 px-6 w-full">
+    <nav className="bg-white shadow-sm py-4 px-6 w-full overflow-x-hidden">
       <div className=" flex justify-between items-center">
         
         <div className="flex-shrink-0 mr-auto">
@@ -41,7 +41,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-6 ml-auto pr-8 w-1/3 ">
+        <div className="hidden lg:flex space-x-6 ml-auto pr-8 w-1/3 ">
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -58,7 +58,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile menu button */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="text-gray-600 hover:text-blue-500 focus:outline-none"
@@ -84,7 +84,7 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden mt-4 pb-2">
+        <div className="lg:hidden mt-4 pb-2">
           {navItems.map((item) => (
             <Link
               key={item.name}

@@ -2,6 +2,7 @@
 
 import React, {useEffect,useState} from 'react'
 import Image from 'next/image'
+import Link from 'next/link';
 
 
 
@@ -40,7 +41,7 @@ export default function Page() {
 
 return (
 <>
-  <section className='flex flex-col md:flex-row justify-between items-start w-full px-4 py-16 w-full relative bg-yellow-500'>
+  <section className='flex flex-col md:flex-row justify-between items-start w-full px-4 py-16  relative bg-yellow-500'>
     <div className='max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-start'> 
            {/* text block */}
       <div className='text-container md:w-1/2 md:pr-8 mb-10 md:mb-0 md:mt-20'>
@@ -50,11 +51,11 @@ return (
         <p className="text-white text-lg mb-6">
           Sedang mencari mainan untuk anak? Langsung klik tombol di bawah ini aja!
         </p>
-        <button className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-5 rounded-full flex items-center">
+        <Link href={'/customers/produk'} className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-5 rounded-full">
           BELANJA SEKARANG! <span className="ml-1">→</span>
-        </button>
+        </Link>
 
-        <div className="image-container flex justify-start space-x-8 max-w-7xl mx-auto mt-16 overflow-x-auto">
+        <div className="image-container flex justify-start space-x-8 max-w-7xl mx-auto mt-16 overflow-x-hidden">
           <Image src="/assets/Dad-books.png" width={80} height={80} alt="Kid riding toy horse" className="h-16 w-auto" />
           <Image src="/assets/Girl-horse.png" width={80} height={80} alt="Kids playing with toys" className="h-16 w-auto" />
           <Image src="/assets/Mother-toys.png" width={80} height={80} alt="Kid playing on floor" className="h-16 w-auto" />
@@ -114,9 +115,9 @@ return (
               Temukan mainan seru dari kami, sekarang ada koleksi terbaru pilihan orang tua. Aman, terjamin kualitasnya, dan tersedia dengan harga terbaik yang patut Anda coba. Anak-anak pasti akan bahagia dan mainan kami dibuat dengan standar kualitas terbaik.
             </p>
             
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-5 rounded-full flex items-center">
+            <Link  href={'/customers/produk'} className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-5 rounded-full ">
               BELANJA SEKARANG! <span className="ml-1">→</span>
-            </button>
+            </Link>
           </div>
       
         </section>
