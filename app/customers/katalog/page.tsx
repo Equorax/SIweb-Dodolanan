@@ -50,57 +50,57 @@ export default function page() {
       <section className='flex  md:flex-row  w-full px-4 py-16  relative bg-sky-500 overflow-x-hidden'>
 
         {/* Left top sittig  boy */}
-        <div className='absolute top-5 left-1/4 transform -translate-x-1/2 md:block hidden'>
+        <div className='absolute top-5 left-1/4 transform -translate-x-1/2 lg:block hidden'>
             <Image 
               src="/assets/sitting-boy.png" 
               alt="Person with laptop" 
-              width={80} 
-              height={80} 
-              className="w-16 h-16 md:w-20 md:h-20"
+              width={100} 
+              height={100} 
+              className="w-16 h-16 md:w-24 md:h-24"
             />
           </div>
 
         {/* Right top cartoon person */}
-          <div className='absolute top-5 right-1/4 transform translate-x-1/2 md:block hidden'>
+          <div className='absolute top-5 right-1/4 transform translate-x-1/2 lg:block hidden'>
             <Image 
               src="/assets/Dad-books.png" 
               alt="Person sitting" 
-              width={80} 
-              height={80}
-              className="w-16 h-16 md:w-20 md:h-20"
+              width={100} 
+              height={100}
+              className="w-16 h-16 md:w-24 md:h-24"
             />
           </div>
     
         {/* Bottom left cartoon person */}
-          <div className='absolute bottom-[1px] left-1/4 transform -translate-x-1/2 md:block hidden'>
+          <div className='absolute bottom-[1px] left-[250px] transform -translate-x-1/2 lg:block md:hidden hidden md: mt-20'>
             <Image 
               src="/assets/Mother-toys.png" 
               alt="Person with picts" 
-              width={80} 
-              height={80}
-              className="w-16 h-16 md:w-20 md:h-20"
+              width={100} 
+              height={100}
+              className="w-16 h-16 md:w-[120px] md:h-[120px]"
             />
           </div>
         {/* Bottom right cartoon person */}
-          <div className='absolute bottom-[1px] right-1/4 transform translate-x-1/2 md:block hidden'>
+          <div className='absolute bottom-[1px] right-[250px] transform translate-x-1/2 lg:block md:hidden hidden'>
             <Image 
               src="/assets/Girl-horse.png" 
               alt="Person doing activity" 
-              width={80} 
-              height={80}
-              className="w-16 h-16 md:w-20 md:h-20"
+              width={100} 
+              height={100}
+              className="w-16 h-16 md:w-[120px] md:h-[120px]"
             />
           </div>
         <div className=' flex mx-auto w-full justify-center'> 
                {/* text block */}
                
-          <div className='text-container mb-10 md:mb-0 md:mt-20 justify-center'>
+          <div className='text-container md:flex-row mb-10 md:mb-0 md:mt-20 justify-center'>
 
-            <h1 className="text-5xl font-bold text-white justify-center">
+            <h1 className=" text-4xl lg:text-6xl font-bold text-white justify-center">
               ADA APA AJA SIH DI!
             </h1>
-            <div className="flex-shrink-0 mt-5 pl-12">
-              <Link href="/customers/beranda" className={`text-5xl ${RammettoOneFont.className}`}>
+            <div className="flex-shrink-0 mt-5 pl-12 ">
+              <Link href="/customers/beranda" className={`text-4xl ${RammettoOneFont.className} lg:text-6xl`}>
                 <span className="text-blue-500">D</span>
                 <span className="text-purple-500">O</span>
                 <span className="text-pink-500">D</span>

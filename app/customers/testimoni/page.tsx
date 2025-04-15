@@ -1,6 +1,11 @@
 'use client'
 import React from 'react'
 import Image from 'next/image';
+import { Bungee_Inline } from 'next/font/google';
+const Bungee = Bungee_Inline({
+  subsets: ['latin'],
+  weight: "400"
+})
 
 // pages/testimonials.tsx
 
@@ -25,9 +30,17 @@ export default function Testimonials() {
 
   return (
     <>
+
+  
   
     <div className="min-h-screen bg-yellow-400 p-6 flex flex-col items-center justify-center">
       
+    <div className='flex-col justify-center items-center mb-20 '>
+      <h1 className={`text-6xl lg:text-9xl mb-10 mt-10 font-bold text-blue-700 text-center ${Bungee.className}`}> Testimoni </h1>
+      <hr className='border-4 border-white mt-4'/>
+    </div>
+
+    
 
       <div className="w-full max-w-2xl">
         {testimonials.map((testimonial) => (

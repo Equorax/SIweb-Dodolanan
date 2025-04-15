@@ -41,7 +41,7 @@ export default function Page() {
 
 return (
 <>
-  <section className='flex flex-col md:flex-row justify-between items-start w-full px-4 py-16  relative bg-yellow-500'>
+  <section className='flex flex-col md:flex-row justify-between items-start w-full px-4 py-16  relative bg-yellow-400'>
     <div className='max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-start'> 
            {/* text block */}
       <div className='text-container md:w-1/2 md:pr-8 mb-10 md:mb-0 md:mt-20'>
@@ -87,7 +87,7 @@ return (
         
   </section>
 
-    <section className="flex bg-yellow-500 py-16 px-4">
+    <section className="flex bg-yellow-400 py-16 px-4">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl font-bold text-white mb-2">
               PRODUK TERBARU DARI KAMI

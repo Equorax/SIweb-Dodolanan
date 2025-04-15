@@ -40,11 +40,11 @@ export default function profilTim() {
 
   return (
     <>
-    <section className='min-h-screen bg-yellow-500 pb-12'>
+    <section className='min-h-screen bg-yellow-400 pb-12'>
       <main className='contaner mx-auto px-4'>
         <div className=' flex flex-col items-center justify-center '>
-          <h1 className={`pt-10 text-9xl font-bold text-blue-700 text-center ${Bungee.className}`}>Profil Tim</h1>
-          <hr className='border-[5px] w-[650px] mt-4 border-blue-700'/>
+          <h1 className={`pt-10 text-6xl lg:text-9xl font-bold text-blue-700 text-center ${Bungee.className}`}>Profil Tim</h1>
+          <hr className='border-[5px] w-[300px] lg:w-[650px] mt-4 border-blue-700'/>
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16'>
           {teamMembers.map((member) => (
