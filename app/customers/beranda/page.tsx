@@ -52,7 +52,7 @@ return (
           Sedang mencari mainan untuk anak? Langsung klik tombol di bawah ini aja!
         </p>
         <Link href={'/customers/produk'} className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-5 rounded-full">
-          BELANJA SEKARANG! <span className="ml-1">→</span>
+          Lihat Produk! <span className="ml-1">→</span>
         </Link>
 
         <div className="image-container flex justify-start space-x-8 max-w-7xl mx-auto mt-16 overflow-x-hidden">
@@ -61,6 +61,7 @@ return (
           <Image src="/assets/Mother-toys.png" width={80} height={80} alt="Kid playing on floor" className="h-16 w-auto" />
           <Image src="/assets/sitting-boy.png" width={80} height={80} alt="Kids reading together" className="h-16 w-auto" />
         </div>
+        
       </div>
       
       {/* image kid */}
@@ -79,12 +80,7 @@ return (
           />
         </div>
       </div>
-   
-      
-
-      
-
-        
+   {/* mapping gambar bawah */}
   </section>
 
     <section className="flex bg-yellow-400 py-16 px-4">
@@ -116,7 +112,7 @@ return (
             </p>
             
             <Link  href={'/customers/produk'} className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-5 rounded-full ">
-              BELANJA SEKARANG! <span className="ml-1">→</span>
+              Lihat Produk! <span className="ml-1">→</span>
             </Link>
           </div>
       

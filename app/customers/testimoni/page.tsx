@@ -30,10 +30,7 @@ export default function testimoniPage() {
 
   return (
     <>
-
-  
-  
-    <div className="min-h-screen bg-yellow-400 p-6 flex flex-col items-center justify-center">
+    <section className="min-h-screen bg-yellow-400 p-6 flex flex-col items-center justify-center">
       
     <div className='flex-col justify-center items-center mb-20 '>
       <h1 className={`text-6xl lg:text-9xl mb-10 mt-10 font-bold text-blue-700 text-center ${Bungee.className}`}> Testimoni </h1>
@@ -91,7 +88,7 @@ export default function testimoniPage() {
           </button>
         </div>
       </div>
-    </div>
+    </section>
     </>
   );
 }

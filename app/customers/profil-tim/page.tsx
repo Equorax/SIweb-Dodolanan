@@ -14,7 +14,7 @@ export default function profilTimPage() {
       birthdate: "18-04-2000",
       role: "SWE-1",
       instagram: "@Pascal1",
-      imageUrl: "/assets/Pascal-siweb.jpg", // Pastikan file gambar ada di folder public
+      imageUrl: "/assets/headshot-tim/Pascal-siweb.jpg", // Pastikan file gambar ada di folder public
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras porttitor metus vel lorem finibus efficitur."
     },
     {
@@ -23,7 +23,7 @@ export default function profilTimPage() {
       birthdate: "12-01-1990",
       role: "SWE-2",
       instagram: "@Yosua1",
-      imageUrl: "/assets/Yosua-siweb.jpg",
+      imageUrl: "/assets/headshot-tim/Yosua-siweb.jpg",
       description: "Nullam nec purus ex. Integer eget sapien eu nisi tempus maximus. Aenean et nisl dignissim, tincidunt ex ut, egestas justo."
     },
     {
@@ -32,7 +32,7 @@ export default function profilTimPage() {
       birthdate: "18-04-2005",
       role: "SWE-3",
       instagram: "@Richard1",
-      imageUrl: "/assets/Richard-siweb.jpg",
+      imageUrl: "/assets/headshot-tim/Richard-siweb.jpg",
       description: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam porttitor, ipsum vel fermentum hendrerit, lorem ipsum congue dui."
     }
   ];

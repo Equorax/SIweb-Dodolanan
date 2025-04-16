@@ -51,7 +51,7 @@ export default function Sidebar() {
       </div>
       
       {/* Sidebar item */}
-      <div className="flex flex-col justify-between items-center space-y-6">
+      <div className="flex flex-col justify-between items-center space-y-6 mt-5 gap-8">
        {sideItems.map((item) =>(
         <Link
           key={item.name}

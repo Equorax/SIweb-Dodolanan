@@ -10,6 +10,9 @@ const RammettoOneFont = Rammetto_One({
   weight: "400"
 })
 
+
+
+
 export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

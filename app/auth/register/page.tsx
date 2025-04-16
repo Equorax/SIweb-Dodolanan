@@ -87,7 +87,7 @@ export default function Register() {
  
     <div className="min-h-screen flex items-center justify-center bg-yellow-500">
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md grid grid-cols-1 gap-4">
-        <h2 className="text-2xl font-bold text-center mb-4">Selamat Datang</h2>
+        <h2 className="text-2xl font-bold text-center mb-4">Silahkan Daftar</h2>
         
         <form onSubmit={handleRegister} className="space-y-4">
 
