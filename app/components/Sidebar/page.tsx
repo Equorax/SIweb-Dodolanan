@@ -9,13 +9,32 @@ const RammettoOneFont = Rammetto_One({
   subsets: ['latin'],
   weight: ['400']
 })
-const Sidebar = () => {
+export default function Sidebar() {
+
   const pathname = usePathname();
-  
+
+  const sideItems = [
+    {
+      name: 'Dashboard', 
+      path: '/admin/dashboard',
+      icon: '/icons/dashboard.png', 
+    },
+    {
+      name: 'Kelola-Stok', 
+      path: '/admin/kelola-stok',
+      icon: '/icons/stok-barang.png',
+    },
+    {
+      name: 'Kelola-Transaksi', 
+      path: '/admin/kelola-transaksi',
+      icon: '/icons/transaksi.png',
+    }
+  ];
+
+
   return (
     <div className="w-48 h-full bg-white shadow-md flex flex-col">
-      {/* Logo Section */}
-      <div className="border-b border-gray-200">
+      <div className="border-b-2 pt-[3px]  border-gray-600">
         <div className="p-4">
         <Link href="/" className={`text-lg ${RammettoOneFont.className}`}>
             <span className="text-blue-500">D</span>
@@ -31,24 +50,36 @@ const Sidebar = () => {
         </div>
       </div>
       
-      {/* Menu Items */}
-      <div className="flex-1">
-        <Link href="/inventory">
-          <div className={`px-4 py-3 flex items-center space-x-3 ${pathname.includes('/inventory') ? 'bg-gray-100 border-l-4 border-yellow-500' : ''}`}>
-           <Image
-           src={'/icons/fi-rr-cube.png'}
-           width={20}
-           height={20}
-           alt={'boxcube'}
-           />
-            <span className="text-gray-700">Kelola Stok</span>
-          </div>
-        </Link>
-        
+      {/* Sidebar item */}
+      <div className="flex flex-col justify-between items-center space-y-6">
+       {sideItems.map((item) =>(
+        <Link
+          key={item.name}
+          href={item.path}
+          className={`transition duration-300 text-base font-medium ${
+                  pathname === item.path
+                    ? 'text-blue-700 border-b-2 border-blue-700'
+                    : 'text-blue-400 hover:text-blue-700'
+                }`}
+                
+          >
+           <div className="flex items-center w-full">
+              <div className="w-6 h-6 mr-3">
+                <Image 
+                  src={item.icon} 
+                  alt={`${item.name} icon`}
+                  width={24}
+                  height={24}
+                  className={`${pathname === item.path ? 'opacity-100' : 'opacity-70'}`}
+                />
+              </div>
+              <span>{item.name.replace('-', ' ')}</span>
+            </div>
+            </Link>
+        ))} 
         {/* Add more menu items here as needed */}
       </div>
     </div>
   );
 };
 
-export default Sidebar;

@@ -70,7 +70,7 @@ return (
           <div className="max-w-xl mx-auto mt-8">
             <div className="bg-yellow-400 rounded-lg shadow-md p-8">
               <form onSubmit = {handleSubmit}>
-                <h1 className='text-3xl mb-3 text-blue-600 font-medium'> Tambah Barang </h1>
+                <h1 className='text-3xl mb-3 text-blue-600 font-medium'> Edit Barang </h1>
                 {/* ID Stok */}
                 <div className="mb-6">
                   <label htmlFor="stockId" className="block text-blue-600 font-medium mb-2">

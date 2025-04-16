@@ -10,7 +10,7 @@ const Bungee = Bungee_Inline({
 // pages/testimonials.tsx
 
 
-export default function Testimonials() {
+export default function testimoniPage() {
   const testimonials = [
     {
       id: 1,

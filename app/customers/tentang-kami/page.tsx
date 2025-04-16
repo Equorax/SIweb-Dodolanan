@@ -12,7 +12,7 @@ const bangers = Bangers({
   weight: "400"
 })
 
-export default function Page() {
+export default function tentagKamiPage() {
   return (
     <>
       <section className=' min-h-[1024px] bg-yellow-400'>

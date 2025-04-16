@@ -70,10 +70,10 @@ export default function LoginPage() {
         router.push('/customers/beranda')
       }
     }
-    // jalur login admin
+    // jalur login admin // ganti sementara
     if(username === 'admin123')
       if(validateAdminForm()){
-        router.push('/admin/dashboard')
+        router.push('/admin/kelola-stok')
     }
      
     

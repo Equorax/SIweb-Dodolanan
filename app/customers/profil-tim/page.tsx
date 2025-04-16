@@ -5,7 +5,7 @@ const Bungee = Bungee_Inline({
   subsets: ['latin'],
   weight: "400"
 })
-export default function profilTim() {
+export default function profilTimPage() {
 
   const teamMembers = [
     {

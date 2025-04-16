@@ -47,9 +47,9 @@ export default function Navbar() {
               key={item.name}
               href={item.path}
               className={`transition duration-300 text-base font-medium ${
-                pathname === item.path
-                  ? 'text-blue-700 border-b-2 border-blue-700'
-                  : 'text-blue-400 hover:text-blue-700'
+                pathname === item.path 
+                ? 'text-blue-700 border-b-2 border-blue-700'
+                : 'text-blue-400 hover:text-blue-700'
               }`}
             >
               {item.name}

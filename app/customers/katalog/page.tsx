@@ -44,7 +44,7 @@ const picts = [
   }
 ];
 
-export default function page() {
+export default function katalogPage() {
   return (
     <>
       <section className='flex  md:flex-row  w-full px-4 py-16  relative bg-sky-500 overflow-x-hidden'>

@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 
 
-export default function Page() {
+export default function berandaPage() {
   // membuat array yang berisi objek yang menyimpan alamat gambar,alt, dan background color card
   const products = [
     {

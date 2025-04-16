@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function page() {
+export default function produkPage() {
   return (
     <>
      <section className=' min-h-screen bg-yellow-500'>
