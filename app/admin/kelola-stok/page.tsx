@@ -11,12 +11,12 @@ export default function kelolaBarang() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [inventory, setInventory] = useState([
-    { id: 'ST001', name: 'Mainan 1', quantity: 12, image: null },
-    { id: 'ST002', name: 'Mainan 2', quantity: 12, image: null },
-    { id: 'ST003', name: 'Mainan 3', quantity: 12, image: null },
-    { id: 'ST004', name: 'Mainan 4', quantity: 12, image: null },
-    { id: 'ST005', name: 'Mainan 5', quantity: 12, image: null },
-    { id: 'ST006', name: 'Mainan 6', quantity: 12, image: null },
+    { id: 'ST001', name: 'Mainan 1', quantity: 12,harga:150000, image: null },
+    { id: 'ST002', name: 'Mainan 2', quantity: 12,harga:90000, image: null },
+    { id: 'ST003', name: 'Mainan 3', quantity: 12,harga:75000, image: null },
+    { id: 'ST004', name: 'Mainan 4', quantity: 12,harga:50000, image: null },
+    { id: 'ST005', name: 'Mainan 5', quantity: 12,harga:120000, image: null },
+    { id: 'ST006', name: 'Mainan 6', quantity: 12,harga:60000, image: null },
   ]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +35,7 @@ export default function kelolaBarang() {
   };
 
   const handleAddStock = () => {
-    router.push('/admin/tambah-barang');
+    router.push('/admin/kelola-stok/tambah-barang');
   };
 
   return (
@@ -78,6 +78,7 @@ export default function kelolaBarang() {
                     <Search size={18} className="text-gray-400" />
                   </div>
                 </div>
+
                 <button
                   onClick={handleAddStock}
                   className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
@@ -96,6 +97,7 @@ export default function kelolaBarang() {
                     <th className="px-6 py-3 text-left font-semibold w-1/6"></th>
                     <th className="px-6 py-3 text-left font-semibold w-1/4">Nama Stok</th>
                     <th className="px-6 py-3 text-left font-semibold w-1/4">Jumlah Stok</th>
+                    <th className="px-6 py-3 text-left font-semibold w-1/4">Harga</th>
                     {/* <th className="px-6 py-3 text-center font-semibold w-1/6">Actions</th> */}
                   </tr>
                 </thead>
@@ -103,6 +105,7 @@ export default function kelolaBarang() {
                   {filteredInventory.map((item) => (
 
                     <tr key={item.id} className="border-b border-gray-200">
+                      {/* id stok */}
                       <td className="px-6 py-4 text-blue-600 font-medium">{item.id}</td>
                       
                       <td className="px-6 py-4">
@@ -119,11 +122,13 @@ export default function kelolaBarang() {
 
                       <td className="px-6 py-4 text-blue-600">{item.name}</td>
                       
-                      <td className="pl-[64px] py-4 text-blue-600"> {item.quantity} </td>
+                      <td className="pl-[64px] py-4 text-black"> {item.quantity} </td>
+
+                      <td className="pl-[25px] py-4 text-black"> {item.harga} </td>
 
                       <td className="px-6 py-4 text-center">
                         <div className="flex justify-center space-x-2">
-                          <Link href={'/admin/edit-barang'} className="text-blue-500 hover:text-blue-700">
+                          <Link href={'/admin//kelola-stok/edit-barang'} className="text-blue-500 hover:text-blue-700">
                             <Edit2 size={18} />
                           </Link>
                           <button
