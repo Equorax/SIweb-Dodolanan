@@ -181,10 +181,10 @@
 
 
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import { NextRequest } from 'next/server';
 
-const prisma = new PrismaClient();
+
 
 // Get Controller dengan format Promise params
 export async function GET(
