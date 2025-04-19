@@ -150,6 +150,7 @@ export default function TransaksiPage() {
                     </tr>
                   </thead>
                   <tbody>
+                    {/* mapping */}
                     {filteredTransactions.map((transaction) => (
                       <tr key={transaction.id} className="border-t">
                         <td className="p-2">{transaction.productId}</td>

@@ -1,7 +1,7 @@
 import Sidebar from "../components/Sidebar/page";
 
 
-export default function CustomerLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     // kesalahan sebelumnya ada double div yang ngecover halaaman
     <div className="flex h-screen">

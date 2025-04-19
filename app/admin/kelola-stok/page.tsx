@@ -102,6 +102,7 @@ export default function kelolaBarang() {
                   </tr>
                 </thead>
                 <tbody>
+                  
                   {filteredInventory.map((item) => (
 
                     <tr key={item.id} className="border-b border-gray-200">
