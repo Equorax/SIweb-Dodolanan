@@ -1,18 +1,21 @@
-
-
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { NextRequest } from 'next/server';
 
 const prisma = new PrismaClient();
 
-// Get Controller
+// Define the route context type explicitly
+type RouteContext = {
+  params: { id: string };
+};
+
+// Get Controller with updated parameter structure
 export async function GET(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: RouteContext
 ) {
   try {
-    const id = parseInt(context.params.id);
+    const id = parseInt(params.id);
     
     if (isNaN(id)) {
       return NextResponse.json(
@@ -47,13 +50,13 @@ export async function GET(
   }
 }
 
-// Put Controller
+// Put Controller with updated parameter structure
 export async function PUT(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: RouteContext
 ) {
   try {
-    const id = parseInt(context.params.id);
+    const id = parseInt(params.id);
     
     if (isNaN(id)) {
       return NextResponse.json(
@@ -125,13 +128,13 @@ export async function PUT(
   }
 }
 
-// Delete Controller
+// Delete Controller with updated parameter structure
 export async function DELETE(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: RouteContext
 ) {
   try {
-    const id = parseInt(context.params.id);
+    const id = parseInt(params.id);
     
     if (isNaN(id)) {
       return NextResponse.json(
@@ -167,13 +170,10 @@ export async function DELETE(
     }
     
     return NextResponse.json({ message: 'Transaksi berhasil dihapus' });
-  } catch (error) {
-    console.error('Error deleting transaction:', error);
-    return NextResponse.json(
-      { error: 'Gagal menghapus transaksi' },
-      { status: 500 }
-    );
   } finally {
     await prisma.$disconnect();
   }
 }
+
+// Optional: specify edge runtime if needed
+// export const runtime = 'edge';
