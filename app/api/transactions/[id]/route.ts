@@ -1,15 +1,9 @@
-// // app/api/transactions/[id]/route.ts
+
 // import { NextResponse } from 'next/server';
 // import { PrismaClient } from '@prisma/client';
 // import { NextRequest } from 'next/server';
 
 // const prisma = new PrismaClient();
-
-// interface Params {
-//   params: {
-//     id: string;
-//   };
-// }
 
 // // GET /api/transactions/[id]
 // export async function GET(request: NextRequest, { params }: {params: {id: string}}) {
@@ -50,7 +44,7 @@
 // }
 
 // // PUT /api/transactions/[id]
-// export async function PUT(request: Request, { params }: Params) {
+// export async function PUT(request: NextRequest, { params }: {params: {id: string}}) {
 //   try {
 //     const id = parseInt(params.id);
     
@@ -125,7 +119,7 @@
 // }
 
 // // DELETE /api/transactions/[id]
-// export async function DELETE(request: Request, { params }: Params) {
+// export async function DELETE(request: NextRequest, { params }: {params: {id: string}}) {
 //   try {
 //     const id = parseInt(params.id);
     
@@ -180,10 +174,13 @@ import { NextRequest } from 'next/server';
 
 const prisma = new PrismaClient();
 
-// GET /api/transactions/[id]
-export async function GET(request: NextRequest, { params }: {params: {id: string}}) {
+// Get Controller
+export async function GET(
+  request: NextRequest,
+  context: { params: { id: string } }
+) {
   try {
-    const id = parseInt(params.id);
+    const id = parseInt(context.params.id);
     
     if (isNaN(id)) {
       return NextResponse.json(
@@ -218,10 +215,13 @@ export async function GET(request: NextRequest, { params }: {params: {id: string
   }
 }
 
-// PUT /api/transactions/[id]
-export async function PUT(request: NextRequest, { params }: {params: {id: string}}) {
+// Put Controller
+export async function PUT(
+  request: NextRequest,
+  context: { params: { id: string } }
+) {
   try {
-    const id = parseInt(params.id);
+    const id = parseInt(context.params.id);
     
     if (isNaN(id)) {
       return NextResponse.json(
@@ -293,10 +293,13 @@ export async function PUT(request: NextRequest, { params }: {params: {id: string
   }
 }
 
-// DELETE /api/transactions/[id]
-export async function DELETE(request: NextRequest, { params }: {params: {id: string}}) {
+// Delete Controller
+export async function DELETE(
+  request: NextRequest,
+  context: { params: { id: string } }
+) {
   try {
-    const id = parseInt(params.id);
+    const id = parseInt(context.params.id);
     
     if (isNaN(id)) {
       return NextResponse.json(
