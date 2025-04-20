@@ -18,6 +18,6 @@ Link GitHub: https://github.com/Equorax/SIweb-Dodolanan
 
 Link Deploy Vercel: https://siweb-dodolanan.vercel.app/auth/login
 
-Yosua: Halaman Kelola stok,Halaman Katalog, Halaamn reset password
+Yosua: Halaman Kelola stok,Halaman Katalog, dan Halaman reset password
 Richard : Halaman Dashboard,Halaman Detail Produk, dan Halaman Testimoni
 Pascal: Halaman Kelola Transaksi, Halaman Produk, dan Halaman Profil Tim
