@@ -12,6 +12,7 @@ Dodolanan adalah sebuah website toko mainan, yang memberikan informasi seputar t
 (POV:ADMIN)
 Dodolanan juga berperan sebagai alamat pemantaun usaha bagi pihak admin yang dapat melihat stok barang dan jumlah transaksi.
 
+Implementasi Database: Halaman Kelola Transaksi di Admin (Mapping data dummy)
 
 
 Link GitHub: https://github.com/Equorax/SIweb-Dodolanan
