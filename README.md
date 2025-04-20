@@ -1,23 +1,5 @@
-A_3 SIWEB
+## Next.js App Router Course - Starter
 
-Yosua Arda Kurnia (231712352)
-Richard Eason (231712464)
-Benedictus Pascal Sanjaya(231712611)
+This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
 
-Deskripsi Singkat
-
-(POV:Pelanggan)
-Dodolanan adalah sebuah website toko mainan, yang memberikan informasi seputar toko dan produk yang disediakan toko.
-
-(POV:ADMIN)
-Dodolanan juga berperan sebagai alamat pemantaun usaha bagi pihak admin yang dapat melihat stok barang dan jumlah transaksi.
-
-
-
-Link GitHub: https://github.com/Equorax/SIweb-Dodolanan
-
-Link Deploy Vercel: https://siweb-dodolanan.vercel.app/auth/login
-
-Yosua: Halaman Kelola stok,Halaman Katalog, dan Halaman reset password
-Richard : Halaman Dashboard,Halaman Detail Produk, dan Halaman Testimoni
-Pascal: Halaman Kelola Transaksi, Halaman Produk, dan Halaman Profil Tim
+For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
