@@ -11,12 +11,11 @@ export default function kelolaBarang() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [inventory, setInventory] = useState([
-    { id: 'ST001', name: 'Mainan 1', quantity: 12,harga:150000, image: null },
-    { id: 'ST002', name: 'Mainan 2', quantity: 12,harga:90000, image: null },
-    { id: 'ST003', name: 'Mainan 3', quantity: 12,harga:75000, image: null },
-    { id: 'ST004', name: 'Mainan 4', quantity: 12,harga:50000, image: null },
-    { id: 'ST005', name: 'Mainan 5', quantity: 12,harga:120000, image: null },
-    { id: 'ST006', name: 'Mainan 6', quantity: 12,harga:60000, image: null },
+    { id: 'ST001', name: 'Mainan 1', quantity: 12,harga:150000, image: '/assets/produk-mainan/Lego-1.png' },
+    { id: 'ST002', name: 'Mainan 2', quantity: 12,harga:90000, image: '/assets/produk-mainan/Lego-2.png' },
+    { id: 'ST003', name: 'Mainan 3', quantity: 12,harga:75000, image: '/assets/produk-mainan/Lego-3.png' },
+    { id: 'ST004', name: 'Mainan 4', quantity: 12,harga:50000, image: '/assets/produk-mainan/Lego-4.png' },
+    { id: 'ST005', name: 'Mainan 5', quantity: 12,harga:120000, image: '/assets/produk-mainan/Lego-5.png' }
   ]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -112,7 +111,9 @@ export default function kelolaBarang() {
                       <td className="px-6 py-4">
                         {item.image ? (
                           <div className="h-12 w-12 bg-gray-200 rounded overflow-hidden">
-                            <Image src={item.image} alt={item.name} className="h-full w-full object-cover" />
+                            <Image src={item.image} alt={item.name} className="h-full w-full object-cover"
+                            width={80}
+                            height={80} />
                           </div>
                         ) : (
                           <div className="h-12 w-12 bg-gray-200 rounded flex items-center justify-center">

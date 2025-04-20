@@ -216,7 +216,7 @@ export async function GET(
         { status: 404 }
       );
     }
-    
+    // kalau true akan mengembalikan dibawah ini
     return NextResponse.json(transaction);
   } catch (error) {
     console.error('Error fetching transaction:', error);

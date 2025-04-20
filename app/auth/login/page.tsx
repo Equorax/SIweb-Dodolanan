@@ -11,11 +11,14 @@ export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  // state Errors di inisialisasi sebagai object kosong, objek hanya dapat menerima properti(key) username dan password dengan tipe data string
   const [errors, setErrors] = useState<{username?: string; password?: string;}>({});
   const [showPassword,setShowPassword] = useState(false);
  
 // users
   const validateForm = () => {
+    // accumulator pattern di dalam berfungsi untuk menampung hasil yang dikembalikan dari blok validator
+    // dilakukan agar tidak terjadi konflik (race condition?) dan supaya selalu mendapat data state terbaru untuk di display di error span bawah
     const newErrors: { username?: string; password?: string } = {};
 
     // Email validation
@@ -36,8 +39,11 @@ export default function LoginPage() {
 
 
     setErrors(newErrors);
+
+    //deteksi jumlah error di function ini
     // jika ada error maka lengthnya gak bakal 0 maka yang di return dari function ini false
     // errornya dari setiap block if jika ada error maka object newErrors akan diisi dengan newErrors.username/password
+    
     return Object.keys(newErrors).length === 0;
   };
 

@@ -71,6 +71,11 @@ export default function TransaksiPage() {
     router.push('/admin/kelola-transaksi/tambah-transaksi')
   }
 
+  //Handler Untuk Edit Transaksi (Fake/palsi)
+  const handleEdit = () =>{
+    router.push('/admin/kelola-transaksi/edit-transaksi')
+  }
+
   // Handler untuk hapus transaksi
   const handleDelete = async (id: number) => {
     if (!confirm('Apakah Anda yakin ingin menghapus transaksi ini?')) {
@@ -161,12 +166,15 @@ export default function TransaksiPage() {
                         <td className="p-2">
                           <button 
                             className="text-blue-500 mr-2"
-                            onClick={() => alert(`Edit transaksi ID: ${transaction.id}`)}
-                          ><Edit2 size={18}/></button>
+                            onClick={handleEdit}
+                          ><Edit2 size={18}/>
+                          </button>
+
                           <button 
                             className="text-red-500"
                             onClick={() => handleDelete(transaction.id)}
-                          ><Trash2 size={18}/></button>
+                          ><Trash2 size={18}/>
+                          </button>
                         </td>
                       </tr>
                     ))}

@@ -1,17 +1,16 @@
 'use client';
 
-import React, { ButtonHTMLAttributes, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 
 export default function AddStock() {
   const router = useRouter();
-  const [transactionID, setTransactionId] = useState('');
+  const [transactionId, setTransactionId] = useState('');
   const [transactionName, setTransactionName] = useState('');
   const [transactionQuant,setTransactionQuant] = useState('');
   const [transactionPrice,setTransactionPrice] = useState('');
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement> ) => {
     e.preventDefault();
     // display untuk balik belum aktif
@@ -22,7 +21,6 @@ export default function AddStock() {
     router.push('admin/kelola-transaksi')
   }
 
- 
 
  
 
@@ -36,7 +34,7 @@ return (
         {/* Header */}
         <header className="bg-yellow-500 shadow-md">
           <div className="flex justify-between items-center p-4">
-            <h1 className="text-xl font-semibold text-white">Kelola Transaksi</h1>
+            <h1 className="text-xl font-semibold text-white">Kelola Transaksi </h1>
             <div className="flex items-center">
               <div className="flex items-center mr-2">
                 <div className="h-8 w-8 bg-white rounded-full overflow-hidden mr-2">
@@ -55,25 +53,25 @@ return (
           <div className="max-w-xl mx-auto mt-8">
             <div className="bg-yellow-400 rounded-lg shadow-md p-8">
               <form onSubmit = {handleSubmit}>
-                <h1 className='text-3xl mb-3 text-blue-600 font-medium'> Tambah Transaksi </h1>
-                {/* ID Stok */}
+                <h1 className='text-3xl mb-3 text-blue-600 font-medium'> Edit  </h1>
+                {/* ID Transaksi */}
                 <div className="mb-6">
-                  <label htmlFor="transactionID" className="block text-blue-600 font-medium mb-2">
+                  <label htmlFor="transactionId" className="block text-blue-600 font-medium mb-2">
                     ID Transaksi
                   </label>
                   <input
                     type="text"
-                    id="transactionID"
-                    value={transactionID}
+                    id="transactionId"
+                    value={transactionId}
                     onChange={(e) => setTransactionId(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
-                {/* Nama Stok */}
+                {/* Nama Transaksi */}
                 <div className="mb-8">
                   <label htmlFor="transactionName" className="block text-blue-600 font-medium mb-2">
-                    Nama Mainan
+                    Nama Transaksi
                   </label>
                       <input
                         type="text"
@@ -84,10 +82,10 @@ return (
                       />
                 </div>
 
-                  {/* Jumlah Stok */}
+                  {/* Jumlah Transaksi */}
                   <div className="mb-8">
                   <label htmlFor="stockQuantity" className="block text-blue-600 font-medium mb-2">
-                    Jumlah 
+                    Jumlah Transaksi
                   </label>
                       <input
                         type="number"
@@ -98,7 +96,7 @@ return (
                       />
                 </div>
                 
-                {/* {Harga} */}
+                {/* harga */}
                 <div className="mb-8">
                   <label htmlFor="harga" className="block text-blue-600 font-medium mb-2">
                     Harga 
@@ -111,6 +109,8 @@ return (
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                 </div>
+             
+
 
                 
 
@@ -128,7 +128,7 @@ return (
                 <div className="flex justify-center">
                   <button
                     onClick={cancelSubmit}
-                    className="bg-red-600 hover:bg-red-700  text-white font-medium py-2 px-8 rounded-md"
+                    className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-8 rounded-md"
                   >
                     Cancel
                   </button>
