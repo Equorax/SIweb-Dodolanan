@@ -31,8 +31,6 @@ export default function LoginPage() {
     // Password validation
     if (password.trim() === '') {
       newErrors.password = 'Password tidak boleh kosong';
-    } else if (password.length < 3) {
-      newErrors.password = 'Password harus lebih dari  karakter';
     } else if (password !== '12345' && password !== ''){
       newErrors.password = 'password anda salah'
     }
@@ -58,7 +56,7 @@ export default function LoginPage() {
 
     if (password.trim() === '') {
       newErrors.password = 'Password tidak boleh kosong';
-    } else if (password !== '12345') {
+    }else if (password !== '12345' && password !== ' ') {
       newErrors.password = 'Password anda salah';
     }
 
@@ -74,7 +72,7 @@ export default function LoginPage() {
  
     if (username === 'admin123') {
       if (validateAdminForm()) {
-        router.push('/admin/kelola-stok');
+        router.push('/admin/dashboard');
       }
     } 
     // Pengecekan untuk user biasa
