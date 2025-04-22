@@ -19,7 +19,7 @@ export default function LoginPage() {
   const validateForm = () => {
     // accumulator pattern di dalam berfungsi untuk menampung hasil yang dikembalikan dari blok validator
     // dilakukan agar tidak terjadi konflik (race condition?) dan supaya selalu mendapat data state terbaru untuk di display di error span bawah
-    const newErrors: { username?: string; password?: string } = {};
+    const newErrors: { username?: string; password?: string; } = {};
 
     // Email validation
     if(username.trim() === ''){
@@ -52,14 +52,14 @@ export default function LoginPage() {
 
     if (username.trim() === '') {
       newErrors.username = 'Username tidak boleh kosong';
-    } else if (username !== 'admin123') {
-      newErrors.username = 'Username admin salah';
+    } else if (username !== 'admin123' && username !== '') {
+      newErrors.username = 'Username anda salah';
     }
 
     if (password.trim() === '') {
       newErrors.password = 'Password tidak boleh kosong';
     } else if (password !== '12345') {
-      newErrors.password = 'Password admin salah';
+      newErrors.password = 'Password anda salah';
     }
 
     setErrors(newErrors);
@@ -71,17 +71,18 @@ export default function LoginPage() {
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if(username !== '' && username === 'user123'){
-      if(validateForm() ){
-        router.push('/customers/beranda')
+ 
+    if (username === 'admin123') {
+      if (validateAdminForm()) {
+        router.push('/admin/kelola-stok');
+      }
+    } 
+    // Pengecekan untuk user biasa
+    else {
+      if (validateForm()) {
+        router.push('/customers/beranda');
       }
     }
-    // jalur login admin // ganti sementara
-    if(username === 'admin123')
-      if(validateAdminForm()){
-        router.push('/admin/kelola-stok')
-    }
-     
     
     }
     console.log('Login attempt with:', { username, password });
