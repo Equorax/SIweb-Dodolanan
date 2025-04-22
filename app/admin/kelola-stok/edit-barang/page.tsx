@@ -146,15 +146,8 @@ return (
                 
 
                 {/* Submit & Cancel Button */}
+                
                 <div className='flex justify-center gap-5'>
-                <div className="flex justify-center">
-                  <button
-                    type="submit"
-                    className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-8 rounded-md"
-                  >
-                    Cancel
-                  </button>
-                </div>
 
                 <div className="flex justify-center">
                   <button
@@ -164,6 +157,17 @@ return (
                     Konfirmasi
                   </button>
                 </div>
+
+                <div className="flex justify-center">
+                  <button
+                    type="submit"
+                    className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-8 rounded-md"
+                  >
+                    Cancel
+                  </button>
+                </div>
+
+               
                 </div>
                
               </form>
