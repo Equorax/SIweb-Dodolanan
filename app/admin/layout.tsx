@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Sidebar from "../components/Sidebar/page";
 
 
@@ -7,7 +8,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="flex h-screen">
     <Sidebar />
     <div className="flex-1 overflow-auto">
+      <Suspense>
       {children}
+      </Suspense>
     </div>
   </div>
   );
