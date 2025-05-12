@@ -5,12 +5,12 @@ import { NextRequest } from 'next/server';
 // GET /api/products/[id]
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise <{ id: string }> }
 ) {
   try {
-    const { id } = await params;
-    const productId = parseInt(id);
-        
+    const resolvedParams = await params;
+    const productId = parseInt(resolvedParams.id);
+
     if (isNaN(productId)) {
       return NextResponse.json(
         { error: 'ID produk tidak valid' },
@@ -44,10 +44,11 @@ export async function GET(
 // PUT /api/products/[id]
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise <{ id: string }> }
 ) {
   try {
-    const productId = parseInt(params.id);
+    const resolvedParams = await params;
+    const productId = parseInt(resolvedParams.id);
     
     if (isNaN(productId)) {
       return NextResponse.json(
@@ -96,10 +97,11 @@ export async function PUT(
 // DELETE /api/products/[id]
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise <{ id: string }> }
 ) {
   try {
-    const productId = parseInt(params.id);
+    const resolvedParams = await params;
+    const productId = parseInt(resolvedParams.id);
     
     if (isNaN(productId)) {
       return NextResponse.json(
