@@ -1,11 +1,12 @@
 {
   "private": true,
   "scripts": {
-  "build": " prisma generate && next build",
-  "dev": "next dev --turbopack",
-  "start": "next start",
-  "seed": "pnpx ts-node --project tsconfig-seed.json prisma/seed.ts"
-},
+    "build": " prisma generate && next build",
+    "dev": "next dev --turbopack",
+    "start": "next start",
+    "seed": "pnpx ts-node --project tsconfig-seed.json prisma/seed.ts",
+    "add-recharts": "pnpm add recharts"
+  },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@prisma/client": "^6.6.0",
@@ -21,6 +22,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-icons": "^5.5.0",
+    "recharts": "^2.15.3",
     "tailwindcss": "3.4.17",
     "typescript": "5.7.3",
     "use-debounce": "^10.0.4",

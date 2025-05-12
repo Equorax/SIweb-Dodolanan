@@ -1,32 +1,31 @@
-// Ini adalah skema Prisma yang direkomendasikan untuk aplikasi Anda
-// prisma/schema.prisma
-
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-
-generator client {
-  provider = "prisma-client-js"
-}
-
-
 model Product {
-  id          Int           @id @default(autoincrement())
-  name        String
-  price       Float
-  stock       Int           @default(0)
-  createdAt   DateTime      @default(now())
+  id           Int           @id @default(autoincrement())
+  name         String
+  price        Float
+  stock        Int           @default(0)
+  createdAt    DateTime      @default(now())
+  description  String?
+  imageUrl     String?       // Tetap menyimpan URL untuk kompatibilitas
+  imageData    Bytes?        // Field baru untuk menyimpan data gambar (binary)
+  imageMimeType String?      // Menyimpan tipe MIME untuk rendering yang tepat
+  updatedAt    DateTime      @updatedAt
   transactions Transaction[]
 }
 
 model Transaction {
   id        Int      @id @default(autoincrement())
   productId Int
-  product   Product  @relation(fields: [productId], references: [id])
   quantity  Int
   total     Float
   createdAt DateTime @default(now())
+  product   Product  @relation(fields: [productId], references: [id])
 }

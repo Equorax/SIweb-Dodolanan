@@ -1,191 +1,202 @@
-// app/admin/kelola-transaksi/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
-import Head from 'next/head';
-import { Search, Edit2, Trash2, Trash } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { Transaction } from '@/types/interfaces';
 
-
-
-// Definisikan tipe untuk data
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  stock: number;
-}
-
-interface Transaction {
-  id: number;
-  productId: number;
-  product: Product;
-  quantity: number;
-  total: number;
-  createdAt: string;
-}
-
-export default function TransaksiPage() {
+export default function KelolaTransaksi() {
+  const router = useRouter();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const router = useRouter();
+  const [error, setError] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    async function fetchData() {
+    // Fetch transactions
+    const fetchTransactions = async () => {
       try {
         const response = await fetch('/api/transactions');
         if (!response.ok) {
-          throw new Error(`Error ${response.status}: ${response.statusText}`);
+          throw new Error('Gagal mengambil data transaksi');
         }
-        
         const data = await response.json();
-        console.log('Data transaksi:', data); // Tambahkan log untuk debugging
         setTransactions(data);
-      } catch (error) {
-        console.error('Error saat mengambil data:', error);
+      } catch (err) {
+        setError('Terjadi kesalahan saat mengambil data');
+        console.error(err);
       } finally {
         setLoading(false);
       }
-    }
+    };
 
-    fetchData();
+    fetchTransactions();
   }, []);
 
-  // Filter transaksi berdasarkan pencarian
+  const handleAddTransaction = () => {
+    router.push('/admin/kelola-transaksi/tambah-transaksi');
+  };
+
+  const handleEditTransaction = (id: number) => {
+    router.push(`/admin/kelola-transaksi/edit-transaksi?id=${id}`);
+  };
+
+  const handleDeleteTransaction = async (id: number) => {
+    if (window.confirm('Apakah Anda yakin ingin menghapus transaksi ini?')) {
+      try {
+        const response = await fetch(`/api/transactions/${id}`, {
+          method: 'DELETE',
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Gagal menghapus transaksi');
+        }
+
+        // Refresh transaksi setelah menghapus
+        setTransactions((prevTransactions) => 
+          prevTransactions.filter((transaction) => transaction.id !== id)
+        );
+      } catch (err) {
+        console.error('Error deleting transaction:', err);
+        alert(err instanceof Error ? err.message : 'Gagal menghapus transaksi');
+      }
+    }
+  };
+
+  // Filter transactions based on search query
   const filteredTransactions = transactions.filter(transaction => 
-    transaction.product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    transaction.product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    transaction.id.toString().includes(searchQuery) ||
+    transaction.productId.toString().includes(searchQuery)
   );
 
-  // Format angka sebagai mata uang
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 0
-    }).format(amount);
+  // Format date to a more readable format
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('id-ID', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
   };
 
-  // Handler Untuk Tambah Transaksi (Fake/palsu)
-  const handleAdd = () => {
-    router.push('/admin/kelola-transaksi/tambah-transaksi')
+  if (loading) {
+    return (
+      <div className="container mx-auto p-4">
+        <div className="bg-yellow-500 p-4 rounded-t-sm">
+          <h1 className="text-xl font-bold">Daftar Transaksi</h1>
+        </div>
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
+      </div>
+    );
   }
 
-  //Handler Untuk Edit Transaksi (Fake/palsi)
-  const handleEdit = () =>{
-    router.push('/admin/kelola-transaksi/edit-transaksi')
+  if (error) {
+    return (
+      <div className="container mx-auto p-4">
+        <div className="bg-yellow-500 p-4 rounded-t-sm">
+          <h1 className="text-xl font-bold">Daftar Transaksi</h1>
+        </div>
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4">
+          <p>{error}</p>
+        </div>
+      </div>
+    );
   }
-
-  // Handler untuk hapus transaksi
-  const handleDelete = async (id: number) => {
-    if (!confirm('Apakah Anda yakin ingin menghapus transaksi ini?')) {
-      return;
-    }
-
-    try {
-      const response = await fetch(`/api/transactions/${id}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        throw new Error('Gagal menghapus transaksi');
-      }
-
-      // Hapus transaksi dari state
-      setTransactions(transactions.filter(t => t.id !== id));
-      alert('Transaksi berhasil dihapus');
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Gagal menghapus transaksi');
-    }
-  };
 
   return (
     <div>
-      <Head>
-        <title>Kelola Transaksi - DODOLANAN</title>
-      </Head>
-
-      <div className="flex">
-        {/* Sidebar bisa dimasukkan di sini */}
-        
-        <div className="flex-1">
-          <div className="bg-yellow-500 p-4">
-            <h1 className="text-xl font-semibold text-white">Kelola Transaksi</h1>
-          </div>
-
-          <div className="p-4">
-            <div className="bg-yellow-500 p-4 rounded-lg">
-              <div className="flex justify-between mb-4">
-                <h2 className="text-lg font-semibold">Transaksi Penjualan</h2>
-                {/* input element */}
-                <div className="flex space-x-2">
-                  <div className='relative'>
-                    <input 
-                      type="text" 
-                      placeholder="Cari Transaksi..." 
-                      className="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                     <div className="absolute left-3 top-2.5">
-                        <Search size={18} className="text-gray-400" />
-                      </div>
-                  </div>
-                 
-                  <button className="bg-blue-600 text-white px-3 py-1 rounded"
-                  onClick={handleAdd}>
-                    Tambah Transaksi
-                  </button>
-                </div>
+      <div className="bg-yellow-500 p-5">
+        <h1 className="text-xl font-semibold text-white">Kelola Transaksi</h1>
+      </div>
+      
+      <div className='mt-10 bg-yellow-500 pt-5'>
+        <div className="flex justify-between items-center">
+          <h1 className="text-xl font-bold pl-5">Daftar Transaksi</h1>
+          <div className="flex space-x-2">
+            <div className="relative p">
+              <input
+                type="text"
+                placeholder="Cari Transaksi..."
+                className="border rounded-md px-3 py-1 pr-8"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
               </div>
-
-              {loading ? (
-                <p>Memuat data...</p>
-              ) : filteredTransactions.length > 0 ? (
-                <table className="w-full bg-white rounded overflow-hidden">
-                  <thead className="bg-gray-100">
-                    <tr>
-                      <th className="text-left p-2">ID Mainan</th>
-                      <th className="text-left p-2">Nama Mainan</th>
-                      <th className="text-left p-2">Harga</th>
-                      <th className="text-left p-2">Jumlah</th>
-                      <th className="text-left p-2">Total Transaksi</th>
-                      <th className="text-left p-2">Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* mapping */}
-                    {filteredTransactions.map((transaction) => (
-                      <tr key={transaction.id} className="border-t">
-                        <td className="p-2">{transaction.productId}</td>
-                        <td className="p-2">{transaction.product.name}</td>
-                        <td className="p-2">{formatCurrency(transaction.product.price)}</td>
-                        <td className="p-2">{transaction.quantity}</td>
-                        <td className="p-2">{formatCurrency(transaction.total)}</td>
-                        <td className="p-2">
-                          <button 
-                            className="text-blue-500 mr-2"
-                            onClick={handleEdit}
-                          ><Edit2 size={18}/>
-                          </button>
-
-                          <button 
-                            className="text-red-500"
-                            onClick={() => handleDelete(transaction.id)}
-                          ><Trash2 size={18}/>
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : (
-                <p className="text-center p-4 bg-white rounded">Tidak ada data transaksi ditemukan.</p>
-              )}
             </div>
+            <button 
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded-md"
+              onClick={handleAddTransaction}
+            >
+              Tambah Transaksi
+            </button>
           </div>
         </div>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="min-w-full border-collapse bg-yellow-500">
+          <thead>
+            <tr className="bg-yellow-500">
+              <th className="border px-4 py-2 text-left">ID Transaksi</th>
+              <th className="border px-4 py-2 text-left">Nama Mainan</th>
+              <th className="border px-4 py-2 text-left">Harga Satuan</th>
+              <th className="border px-4 py-2 text-left">Jumlah</th>
+              <th className="border px-4 py-2 text-left">Total</th>
+              <th className="border px-4 py-2 text-left">Tanggal</th>
+              <th className="border px-4 py-2 text-left">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredTransactions.map((item) => (
+              <tr key={item.id} className="hover:bg-yellow-700">
+                <td className="border px-4 py-2">{item.id}</td>
+                <td className="border px-4 py-2">
+                  <div className="flex items-center">
+                    {item.product.imageUrl ? (
+                      <img src={item.product.imageUrl} alt={item.product.name} className="h-6 w-6 mr-2 object-cover" />
+                    ) : (
+                      <div className="bg-red-500 h-6 w-6 mr-2"></div>
+                    )}
+                    {item.product.name}
+                  </div>
+                </td>
+                <td className="border px-4 py-2">Rp {item.product.price.toLocaleString('id-ID')}</td>
+                <td className="border px-4 py-2">{item.quantity}</td>
+                <td className="border px-4 py-2">Rp {item.total.toLocaleString('id-ID')}</td>
+                <td className="border px-4 py-2">{formatDate(item.createdAt)}</td>
+                <td className="border px-4 py-2">
+                  <div className="flex space-x-2">
+                    <button 
+                      className="text-blue-500 hover:text-blue-700"
+                      onClick={() => handleEditTransaction(item.id)}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                      </svg>
+                    </button>
+                    <button 
+                      className="text-red-500 hover:text-red-700"
+                      onClick={() => handleDeleteTransaction(item.id)}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

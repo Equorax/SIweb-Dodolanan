@@ -1,8 +1,5 @@
-// app/api/transactions/route.ts
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/lib/prisma';
 
 // GET /api/transactions
 export async function GET() {
@@ -10,6 +7,9 @@ export async function GET() {
     const transactions = await prisma.transaction.findMany({
       include: {
         product: true,
+      },
+      orderBy: {
+        id: 'asc',
       },
     });
     
@@ -57,7 +57,8 @@ export async function POST(request: Request) {
     }
     
     const total = product.price * quantity;
-    
+
+    // Membuat transaksi baru
     const transaction = await prisma.transaction.create({
       data: {
         productId: Number(productId),
@@ -69,6 +70,7 @@ export async function POST(request: Request) {
       },
     });
     
+    // Update stok produk
     await prisma.product.update({
       where: { id: Number(productId) },
       data: { stock: product.stock - quantity },
