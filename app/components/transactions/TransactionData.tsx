@@ -1,24 +1,34 @@
-// components/transactions/TransactionData.tsx
+// // components/transactions/TransactionData.tsx
+
+
 import { Suspense } from 'react';
 import { Transaction } from '@/types/interfaces';
 import TransactionTable from './TransactionTable';
 import TransactionTableSkeleton from '../skeleton/TransactionTableSkeleton';
 
-// Fungsi untuk mengambil data dari server
+// PERBAIKI FUNGSI GET TRANSACTIONS - JANGAN IMPORT ROUTE
 async function getTransactions(): Promise<Transaction[]> {
   try {
-    // Mengakses API route langsung melalui import
-    const res = await import('@/app/api/transactions/route');
+    // GUNAKAN FETCH BIASA, BUKAN IMPORT ROUTE
+    const baseUrl = process.env.NEXTAUTH_URL || 'https://siweb-dodolanan.vercel.app';
     
-    // Akses handler GET dari route file
-    const response = await res.GET();
+    const response = await fetch(`${baseUrl}/api/transactions`, {
+      cache: 'no-store', // DISABLE CACHE
+      headers: {
+        'Cache-Control': 'no-cache'
+      },
+      // TAMBAHKAN NEXT REVALIDATE
+      next: { revalidate: 0 }
+    });
     
-    // Parse response JSON
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     const data = await response.json();
     return data;
   } catch (error) {
     console.error('Error saat mengambil data transaksi:', error);
-    // Kembalikan array kosong jika terjadi error
     return [];
   }
 }

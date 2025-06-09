@@ -7,9 +7,10 @@
 
 
 
+// app/customers/produk/page.tsx
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Bungee_Inline } from 'next/font/google';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -37,26 +38,73 @@ export default function ProdukPage() {
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('/api/products');
-        if (!response.ok) {
-          throw new Error('Gagal mengambil data produk');
+  // IMPROVED FETCH FUNCTION WITH CACHE BUSTING
+  const fetchProducts = useCallback(async (showLoader = true) => {
+    if (showLoader) setLoading(true);
+    setIsRefreshing(true);
+    setError(null);
+    
+    try {
+      // TAMBAHKAN TIMESTAMP UNTUK BYPASS CACHE
+      const timestamp = new Date().getTime();
+      const response = await fetch(`/api/products?_t=${timestamp}`, {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
         }
-        const data = await response.json();
-        setProducts(data);
-      } catch (err) {
-        setError('Terjadi kesalahan saat mengambil data produk');
-        console.error('Error fetching products:', err);
-      } finally {
-        setLoading(false);
+      });
+      
+      if (!response.ok) {
+        throw new Error('Gagal mengambil data produk');
+      }
+      
+      const data = await response.json();
+      
+      // SORT BY ID (DEFAULT ORDER)
+      const sortedData = data.sort((a: Product, b: Product) => a.id - b.id);
+      
+      setProducts(sortedData);
+      setLastUpdated(new Date());
+      console.log('Products refreshed at:', new Date().toLocaleTimeString());
+    } catch (err) {
+      setError('Terjadi kesalahan saat mengambil data produk');
+      console.error('Error fetching products:', err);
+    } finally {
+      setLoading(false);
+      setIsRefreshing(false);
+    }
+  }, []);
+
+  // INITIAL LOAD
+  useEffect(() => {
+    fetchProducts(true);
+  }, [fetchProducts]);
+
+  // AUTO-REFRESH SETIAP 30 DETIK
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchProducts(false); // Background refresh without loader
+    }, 30000); // 30 seconds
+
+    return () => clearInterval(interval);
+  }, [fetchProducts]);
+
+  // VISIBILITY CHANGE - REFRESH WHEN USER RETURNS TO TAB
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        fetchProducts(false);
       }
     };
 
-    fetchProducts();
-  }, []);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [fetchProducts]);
 
   // Calculate pagination values
   const totalProducts = products.length;
@@ -112,17 +160,32 @@ export default function ProdukPage() {
   return (
     <>
       <section className='flex flex-col items-center min-h-screen bg-yellow-500'>
+        {/* HEADER */}
         <div className='flex-col justify-center items-center'>
           <h1 className={`text-6xl lg:text-9xl mb-5 mt-10 font-bold text-blue-700 text-center ${Bungee.className}`}>PRODUK</h1>
           <hr className='border-4 border-white mt-2' />
+          
+          {/* STATUS INFO BAR */}
+          <div className="bg-blue-700 text-white text-center py-2 px-4 rounded-lg mt-4">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 text-sm">
+              <span>Total: {totalProducts} produk</span>
+              <span>•</span>
+              <span>Update: {lastUpdated.toLocaleTimeString('id-ID')}</span>
+              <span>•</span>
+              <span>{isRefreshing ? '🔄 Memuat...' : '✅ Terbaru'}</span>
+              <span>•</span>
+              <span>Auto-refresh: 30s</span>
+            </div>
+          </div>
         </div>
 
         {loading ? (
-          <div className="flex justify-center items-center min-h-[400px]">
+          <div className="flex flex-col justify-center items-center min-h-[400px] gap-4">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-700"></div>
+            <p className="text-blue-700 font-semibold">Memuat produk...</p>
           </div>
         ) : error ? (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded my-4">
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded my-4 max-w-md">
             <p>{error}</p>
           </div>
         ) : (
@@ -158,7 +221,7 @@ export default function ProdukPage() {
                   </div>
                   
                   <div className="text-gray-600">
-                    Produk {startIndex + 1}-{Math.min(endIndex, totalProducts)} dari  {totalProducts} 
+                    Produk {startIndex + 1}-{Math.min(endIndex, totalProducts)} dari {totalProducts} 
                   </div>
                 </div>
               </div>
@@ -168,14 +231,16 @@ export default function ProdukPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 my-8 w-full max-w-7xl px-2">
               {totalProducts === 0 ? (
                 <div className="col-span-full text-center py-10">
-                  <p className="text-xl">Tidak ada produk yang tersedia saat ini.</p>
+                  <div className="bg-white rounded-lg p-8 shadow-lg">
+                    <p className="text-xl text-gray-600">Tidak ada produk yang tersedia saat ini.</p>
+                  </div>
                 </div>
               ) : (
                 currentProducts.map((product) => (
                   <Link
                     href={`/customers/produk/${product.id}`}
                     key={product.id}
-                    className="bg-white rounded-lg overflow-hidden shadow-lg transform transition-transform hover:scale-105"
+                    className="bg-white rounded-lg overflow-hidden shadow-lg transform transition-all hover:scale-105"
                   >
                     <div className="p-4">
                       <div className="relative w-full h-48">
