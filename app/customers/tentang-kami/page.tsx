@@ -3,20 +3,25 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaMapMarkerAlt, FaInstagram } from 'react-icons/fa';
-import { Bangers } from 'next/font/google';
+import { Bungee_Inline,Roboto_Condensed } from 'next/font/google';
 
-const bangers = Bangers({
+const Bungee = Bungee_Inline({
   subsets: ['latin'],
   weight: "400"
+})
+const robotCondensed = Roboto_Condensed({
+  subsets: ['latin'],
+  weight: "700"
 })
 
 export default function tentagKamiPage() {
   return (
     <>
-      <section className=' min-h-[1024px] bg-yellow-400'>
+      <section className=' min-h-[1024px] bg-yellow-500'>
         <main className='container mx-auto p-4'>
           <div className="pt-10 pb-6 mb-10">
-            <h1 className={`text-8xl pt-5 font-bold text-blue-700 ${bangers.className}`}>PROFIL TOKO</h1>
+            <h1 className={`text-8xl pt-5 font-bold text-blue-700 ${Bungee.className}`}>PROFIL TOKO</h1>
+            <hr className='border-[5px] w-[350px] lg:w-[675px] mt-4'></hr>
           </div>
 
           {/* Main Content */}
@@ -40,17 +45,15 @@ export default function tentagKamiPage() {
             </div>
 
             {/* Text Section */}
-            <div className={`bg-yellow-200  mr-10 rounded-lg ${bangers.className}`}>
+            <div className={`bg-yellow-200  mr-10 rounded-lg ${robotCondensed.className}`}>
               <h2 className="tracking-normal text-[34px] font-bold text-blue-800 mb-4 text-center pt-5">TENTANG TOKO</h2>
               
               <p className="text-blue-800 text-justify tracking-normal text-[24px]">
-                DIDIRIKAN DALAM TOKO MAINAN YANG MENYEDIAKAN BERBAGAI JENIS MAINAN BERKUALITAS UNTUK ANAK-
-                ANAK DARI SEGALA USIA. FOKUS PADA MAINAN EDUKATIF DAN KREATIF, JOODIMAINN MENDORONG
-                PERKEMBANGAN MOTORIK, KOGNITIF, DAN SOSIAL ANAK MELALUI KOLEKSI MAINAN RAMAH LINGKUNGAN,
-                PUZZLE, ACTION FIGURE, DAN BONEKA CERIA. SELAIN MEMAMERKAN PENGALAMAN BERBELANJA YANG
-                MENYENANGKAN DENGAN AREA BERMAIN DI DALAM TOKO, JOODIMAINN JUGA AKTIF MENGADAKAN ACARA
-                KREATIF, DISKON ULANG TAHUN, DAN BERKONTRIBUSI PADA KOMUNITAS LOKAL MELALUI DONASI DAN
-                KOLABORASI SPESIAL.
+                Dodolanan adalah toko mainan yang menyediakan berbagai jenis mainan berkualitas untuk anak-anak dari segala usia. 
+                Fokus pada mainan edukatif dan kreatif, Dodolanan mendorong perkembangan motorik, kognitif, dan sosial anak melalui koleksi mainan ramah lingkungan, puzzle, action figure, dan boneka ceria. 
+                Selain memamerkan pengalaman berbelanja yang menyenangkan dengan area bermain di dalam toko, Dodolanan 
+                juga aktif mengadakan acara kreatif, diskon ulang tahun, dan berkontribusi pada komunitas lokal melalui donasi dan kolaborasi spesial.
+
               </p>
 
               <div className="mt-6 flex justify-center">

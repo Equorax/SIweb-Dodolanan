@@ -28,16 +28,14 @@ export default function Register() {
     // Email validation
     if(email.trim() === ''){
       newErrors.email = 'Email tidak boleh kosong';
-    } else if(email !== 'customer@gmail.com' && email !== ''){
+    } else if(email !== 'user123' && email !== ''){
       newErrors.email = 'Email anda salah'
     }
    
     // Password validation
     if (password.trim() === '') {
       newErrors.password = 'Password tidak boleh kosong';
-    } else if (password.length < 6) {
-      newErrors.password = 'Password harus lebih dari 6 karakter';
-    } else if (password !== 'pascal12345'  && password !== ''){
+    } else if (password !== '12345'  && password !== ''){
       newErrors.password = 'password anda salah'
     }
     setErrors(newErrors);
@@ -113,8 +111,8 @@ export default function Register() {
               Alamat Email
             </label>
             <input
-              type="email"
-              id="email"
+              type="text"
+              id="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"

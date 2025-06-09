@@ -59,7 +59,7 @@ export default function TambahBarang() {
     
     setIsSubmitting(true);
     setError('');
-    
+    // tanpa image try handler
     try {
       // Data produk yang akan dikirim
       const productData = {

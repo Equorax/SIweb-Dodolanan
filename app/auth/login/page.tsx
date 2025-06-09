@@ -143,7 +143,7 @@ export default function LoginPage() {
             <span>{errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}</span>
             
 
-            <div className="flex items-center justify-between mt-2">
+            {/* <div className="flex items-center justify-between mt-2">
               <div>
                 <Link 
                   href="/auth/lupa-password" 
@@ -152,7 +152,7 @@ export default function LoginPage() {
                   Lupa Password?
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
           
           <button

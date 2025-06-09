@@ -3,7 +3,11 @@
 import React, {useEffect,useState} from 'react'
 import Image from 'next/image'
 import Link from 'next/link';
-
+import { Playfair_Display} from 'next/font/google';
+const Play = Playfair_Display({
+   subsets: ['latin'],
+    weight: "700"
+})
 
 
 export default function berandaPage() {
@@ -41,14 +45,14 @@ export default function berandaPage() {
 
 return (
 <>
-  <section className='flex flex-col md:flex-row justify-between items-start w-full px-4 py-16  relative bg-yellow-400'>
+  <section className='flex flex-col md:flex-row justify-between items-start w-full px-4 py-16  relative bg-yellow-500'>
     <div className='max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-start'> 
            {/* text block */}
       <div className='text-container md:w-1/2 md:pr-8 mb-10 md:mb-0 md:mt-20'>
-        <h1 className="text-4xl font-bold text-white leading-tight mb-2">
+        <h1 className="text-6xl font-bold text-black leading-tight mb-2">
           Temukan mainan baru yang bikin si kecil bahagia!
         </h1>
-        <p className="text-white text-lg mb-6">
+        <p className="text-black text-lg mb-6">
           Sedang mencari mainan untuk anak? Langsung klik tombol di bawah ini aja!
         </p>
         <Link href={'/customers/produk'} className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-5 rounded-full">
@@ -81,14 +85,27 @@ return (
         </div>
       </div>
    {/* mapping gambar bawah */}
-  </section>
+  </section >
 
-    <section className="flex bg-yellow-400 py-16 px-4">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold text-white mb-2">
+  <section className='bg-yellow-500'>
+          <div className=" flex-col max-w-9xl bg-[url(/assets/Background-h.png)] pt-10 pb-10  mr-40 ml-40 rounded-3xl opacity-90 border-[10px] border-yellow-700">
+           
+                 <Link href={`/customers/testimoni`} className='mr-10'>
+                <h1 className={`text-black font-bold hover:text-indigo-950 text-left md:text-7xl sm: text-2xl pl-10 `}>
+                  "Toko Mainan Yang Mendukung Tumbuh Kembang Anak"      
+                </h1>
+              </Link>
+
+          </div>
+      
+        </section>
+
+    <section className="bg-yellow-500 py-16 px-4 ">
+          <div className="max-w-9xl mr-40 ml-40">
+            <h2 className="text-3xl font-bold text-black mb-2">
               PRODUK TERBARU DARI KAMI
             </h2>
-            <hr className='mb-10'/>
+            <hr className='mb-10 border-white border-[5px]'/>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               {/* Menggunakan array.map untuk membuat kartu produk */}
@@ -107,8 +124,8 @@ return (
               ))}
             </div>
             
-            <p className="text-white mb-6 max-w-3xl">
-              Temukan mainan seru dari kami, sekarang ada koleksi terbaru pilihan orang tua. Aman, terjamin kualitasnya, dan tersedia dengan harga terbaik yang patut Anda coba. Anak-anak pasti akan bahagia dan mainan kami dibuat dengan standar kualitas terbaik.
+            <p className="text-black mb-6 max-w-3xl text-xl text-justify">
+            Temukan mainan seru dari kami, sekarang ada koleksi terbaru pilihan orang tua. Aman, terjamin kualitasnya, dan tersedia dengan harga terbaik yang patut Anda coba. Anak-anak pasti akan bahagia dan mainan kami dibuat dengan standar kualitas terbaik.
             </p>
             
             <Link  href={'/customers/produk'} className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-5 rounded-full ">

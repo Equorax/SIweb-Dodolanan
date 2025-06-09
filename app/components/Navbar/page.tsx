@@ -22,7 +22,8 @@ export default function Navbar() {
     { name: 'Katalog', path: '/customers/katalog' },
     { name: 'Produk', path: '/customers/produk' },
     { name: 'Testimoni', path: '/customers/testimoni' },
-    { name: 'Tentang Kami', path: '/customers/tentang-kami' },
+    {name: 'Profil', path: '/customers/profil'},
+    { name: 'Tentang Kami', path: '/customers/tentang-kami' }
   ];
 
   return (
@@ -44,7 +45,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex space-x-6 ml-auto pr-8 w-1/3 ">
+        <div className="hidden lg:flex space-x-10 ml-auto pr-8 w-[630px] ">
           {navItems.map((item) => (
             <Link
               key={item.name}

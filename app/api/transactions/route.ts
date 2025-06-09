@@ -37,7 +37,7 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    
+    // target produk spesifik sesuai ID
     const product = await prisma.product.findUnique({
       where: { id: Number(productId) },
     });
@@ -87,3 +87,5 @@ export async function POST(request: Request) {
     await prisma.$disconnect();
   }
 }
+
+

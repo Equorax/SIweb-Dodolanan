@@ -28,6 +28,11 @@ export default function Sidebar() {
       name: 'Kelola-Transaksi', 
       path: '/admin/kelola-transaksi',
       icon: '/icons/transaksi.png',
+    },
+    {
+      name: 'Profil',
+      path:'/admin/profile',
+      icon:'/icons/profile-admin.png'
     }
   ];
 

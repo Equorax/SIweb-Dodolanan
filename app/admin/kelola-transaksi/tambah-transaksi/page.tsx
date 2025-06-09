@@ -79,8 +79,10 @@ export default function TambahTransaksi() {
     setIsSubmitting(true);
     setError('');
     
+
+
     try {
-      // Data transaksi yang akan dikirim
+      // Data transaksi yang akan dikirim disesuaikan dengan attribut tabel
       const transactionData = {
         productId: Number(productId),
         quantity: Number(quantity),
@@ -94,7 +96,7 @@ export default function TambahTransaksi() {
         },
         body: JSON.stringify(transactionData),
       });
-      
+      //jika transaksi gagal
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || 'Gagal menambahkan transaksi');
@@ -103,6 +105,7 @@ export default function TambahTransaksi() {
       // Redirect ke halaman kelola transaksi setelah berhasil
       router.push('/admin/kelola-transaksi');
       router.refresh();
+
     } catch (err) {
       console.error('Error adding transaction:', err);
       setError(err instanceof Error ? err.message : 'Terjadi kesalahan saat menambahkan transaksi');
@@ -110,6 +113,9 @@ export default function TambahTransaksi() {
       setIsSubmitting(false);
     }
   };
+
+
+
 
   const cancelSubmit = () => {
     router.push('/admin/kelola-transaksi');

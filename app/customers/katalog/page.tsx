@@ -124,7 +124,7 @@ export default function katalogPage() {
 
 <section className='flex md:flex-row w-full px-4 py-16 relative bg-sky-500 overflow-x-hidden'>
          <div className='flex  flex-col  mx-auto justify-center'>
-              <Link href={'/customers/produk'} className='grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-10 justify-center'>
+              <Link href={'/customers/produk'} className='grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10 justify-center'>
 
               {picts.map((pict, index) => (
                 <div 
