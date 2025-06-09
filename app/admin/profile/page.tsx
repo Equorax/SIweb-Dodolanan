@@ -19,7 +19,7 @@ export default function AdminProfile() {
                 <div className="flex-shrink-0">
                   <div className="w-32 h-32 bg-gray-200 rounded-full overflow-hidden">
                   <Image
-                  src={'/assets/atmin.png'}
+                  src={'/assets/Atmin.png'}
                   width={150}
                   height={150}
                   alt='Profil admin'/>
