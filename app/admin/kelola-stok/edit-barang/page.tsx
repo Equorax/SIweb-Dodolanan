@@ -209,16 +209,6 @@ export default function EditBarang() {
         <header className="bg-yellow-500 shadow-md">
           <div className="flex justify-between items-center p-4">
             <h1 className="text-xl font-semibold text-white">Kelola Stok Barang</h1>
-            <div className="flex items-center">
-              <div className="flex items-center mr-2">
-                <div className="h-8 w-8 bg-white rounded-full overflow-hidden mr-2">
-                  <Image src="/assets/Atmin.jpg" alt="Admin" className="h-full w-full object-cover" 
-                  width={20}
-                  height={20}/>
-                </div>
-                <span className="text-white text-sm">Admin</span>
-              </div>
-            </div>
           </div>
         </header>
 
