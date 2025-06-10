@@ -59,6 +59,7 @@ export default function TambahBarang() {
     
     setIsSubmitting(true);
     setError('');
+    
     // tanpa image try handler
     try {
       // Data produk yang akan dikirim
@@ -69,7 +70,7 @@ export default function TambahBarang() {
         description: description || null,
       };
       
-      // Kirim data produk ke API
+      // Kirim data produk ke API dengan metode POST
       const response = await fetch('/api/products', {
         method: 'POST',
         headers: {
