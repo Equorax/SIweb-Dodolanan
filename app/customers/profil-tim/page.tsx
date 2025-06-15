@@ -15,7 +15,9 @@ export default function profilTimPage() {
       role: "SWE-1",
       instagram: "@Pascal1",
       imageUrl: "/assets/headshot-tim/Pascal-siweb.jpg", // Pastikan file gambar ada di folder public
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras porttitor metus vel lorem finibus efficitur."
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras porttitor metus vel lorem finibus efficitur.",
+      telp: "0827-9908-4567",
+      email: "pascal1@gmail.com"
     },
     {
       id: 2,
@@ -24,7 +26,9 @@ export default function profilTimPage() {
       role: "SWE-2",
       instagram: "@Yosua1",
       imageUrl: "/assets/headshot-tim/Yosua-siweb.jpg",
-      description: "Nullam nec purus ex. Integer eget sapien eu nisi tempus maximus. Aenean et nisl dignissim, tincidunt ex ut, egestas justo."
+      description: "Nullam nec purus ex. Integer eget sapien eu nisi tempus maximus. Aenean et nisl dignissim, tincidunt ex ut, egestas justo.",
+      telp: "0987-8988-3527",
+      email: "Yosua1@gmail.com"
     },
     {
       id: 3,
@@ -33,7 +37,9 @@ export default function profilTimPage() {
       role: "SWE-3",
       instagram: "@Richard1",
       imageUrl: "/assets/headshot-tim/Richard-siweb.jpg",
-      description: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam porttitor, ipsum vel fermentum hendrerit, lorem ipsum congue dui."
+      description: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam porttitor, ipsum vel fermentum hendrerit, lorem ipsum congue dui.",
+      telp: "0237-0097-2527",
+      email: "Richard1@gmail.com"
     }
   ];
 
@@ -79,7 +85,14 @@ export default function profilTimPage() {
                 <p className='text-gray-700 text-center mb-4'>
                   {member.description}
                 </p>
+
+                <p className='text-gray-700 text-center mb-4'>
+                  {member.telp}
+                </p>
                 
+                <p className='text-gray-700 text-center mb-4'>
+                  {member.email}
+                </p>
                 {/* Instagram */}
                 <div className='flex items-center justify-center w-full'>
                   <div className='relative w-6 h-6 mr-2'>
