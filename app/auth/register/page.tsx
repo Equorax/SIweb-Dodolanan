@@ -27,17 +27,13 @@ export default function Register() {
 
     // Email validation
     if(email.trim() === ''){
-      newErrors.email = 'Email tidak boleh kosong';
-    } else if(email !== 'user123' && email !== ''){
-      newErrors.email = 'Email anda salah'
-    }
+      newErrors.email = 'Email tidak boleh kosong'
+    } 
    
     // Password validation
     if (password.trim() === '') {
-      newErrors.password = 'Password tidak boleh kosong';
-    } else if (password !== '12345'  && password !== ''){
-      newErrors.password = 'password anda salah'
-    }
+      newErrors.password = 'Password tidak boleh kosong'
+    } 
     setErrors(newErrors);
     // jika ada error maka lengthnya gak bakal 0 maka yang di return dari function ini false
     // errornya dari setiap block if jika ada error maka object newErrors akan diisi dengan newErrors.email/password
@@ -116,7 +112,7 @@ export default function Register() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              // required
+              required
               placeholder='Masukan Alamat Email'
             />
               {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
@@ -135,7 +131,7 @@ export default function Register() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              // required
+              required
               placeholder='Masukan Password'
               
             />
